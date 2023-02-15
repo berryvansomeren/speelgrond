@@ -1,9 +1,11 @@
 from pathlib import Path
 from time import time
 from typing import Any
+
 import ververser
 from ververser import ReloadStatus
 
+from speelgrond.keyboard import _Keyboard
 from speelgrond.screen_shader.screen_shader import load_screen_shader
 
 
@@ -14,6 +16,9 @@ class GameWindow( ververser.GameWindow ):
 
     def __init__( self, content_folder : Path ):
         super().__init__( content_folder )
+
+        self.keyboard = _Keyboard()
+        self.push_handlers( self.keyboard.get_handler() )
 
         def _load_screen_shader( path : Path ) -> Any:
             return load_screen_shader( path, self.width, self.height )

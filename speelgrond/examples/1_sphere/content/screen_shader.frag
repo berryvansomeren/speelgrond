@@ -4,6 +4,7 @@ out vec4 final_colors;
 
 uniform vec2 u_resolution;
 uniform float u_time_total_elapsed_s;
+uniform vec3 u_sphere_position;
 
 // ro = ray_origin = camera_position
 // rd = ray_direction
@@ -31,7 +32,7 @@ float sdf_ground_plane( vec3 sample_point )
 
 float get_scene_distance(vec3 sample_point )
 {
-    float scene_distance = sdf_sphere( sample_point, vec3(0,1,6), 1);
+    float scene_distance = sdf_sphere( sample_point, u_sphere_position, 1);
     scene_distance = min(scene_distance, sdf_ground_plane(sample_point));
 
     return scene_distance;
