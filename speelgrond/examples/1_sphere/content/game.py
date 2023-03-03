@@ -4,12 +4,6 @@ import pyglet.window.key as key
 import speelgrond as sg
 
 
-def modify_tuple( t, i, v ):
-    l = list(t)
-    l[i] += v
-    return tuple(l)
-
-
 class Game:
 
     def __init__( self, game_window: sg.GameWindow ):
@@ -24,14 +18,14 @@ class Game:
     def _update_sphere_position( self, dt ):
         velocity = dt * 5
         modifiers = [
-            ( key.LEFT, 0, -velocity ),
-            ( key.RIGHT, 0, velocity ),
-            ( key.UP, 1, velocity ),
-            ( key.DOWN, 1, -velocity ),
+            ( key.LEFT, ( -velocity, 0, 0 ) ),
+            ( key.RIGHT, ( velocity, 0, 0 ) ),
+            ( key.UP, ( 0, velocity, 0 ) ),
+            ( key.DOWN, ( 0, -velocity, 0 ) ),
         ]
-        for keyboard_key, dimension, value in modifiers:
+        for keyboard_key, position_delta in modifiers:
             if self.game_window.keyboard.is_down(keyboard_key):
-                self.sphere_position = modify_tuple( self.sphere_position, dimension, value )
+                self.sphere_position = np.add( self.sphere_position, position_delta )
 
         self.game_window.set_uniform( 'u_sphere_position', self.sphere_position )
 
