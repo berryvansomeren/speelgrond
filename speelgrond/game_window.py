@@ -29,7 +29,7 @@ class GameWindow( ververser.GameWindow ):
     # --------
     # Convenience Functions
 
-    def set_uniform( self, name: str, v ) :
+    def set_uniform( self, name: str, v, raise_if_unavailable = False ) :
         # uniforms are only set if available
         # uniforms that are declared but not used are optimized out
         # so they are not available then.
@@ -37,16 +37,19 @@ class GameWindow( ververser.GameWindow ):
         shader = self.screen_shader.shader
         if name in shader.uniforms :
             shader[ name ] = v
+        else:
+            if raise_if_unavailable:
+                raise ValueError( f'Uniform with name "{name}" not available.' )
 
     # --------
     # Main Game Functions
 
-    def init( self ):
-
-
-        # make sure to initialize the main script last,
-        # as code invoked by the main script's init() might already expect the screen shader to be available
+    def init( self ) -> bool:
         self.screen_shader = self.asset_manager.load( EXPECTED_SHADER_NAME )
+        assert self.screen_shader
+
+        # super init comes last,
+        # as code invoked by the main script's init() might already expect the screen shader to be available
         super().init()
 
     def update( self, dt ) :

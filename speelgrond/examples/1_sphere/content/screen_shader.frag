@@ -5,6 +5,7 @@ out vec4 final_colors;
 uniform vec2 u_resolution;
 uniform float u_time_total_elapsed_s;
 uniform vec3 u_sphere_position;
+uniform vec3 u_light_position;
 
 // ro = ray_origin = camera_position
 // rd = ray_direction
@@ -73,8 +74,9 @@ vec3 get_normal( vec3 surface_point )
     return normalize( normal );
 }
 
-float get_diffuse_lighting( vec3 surface_point, vec3 light_position )
+float get_diffuse_lighting( vec3 surface_point )
 {
+    vec3 light_position = u_light_position;
     vec3 light_vector = normalize( light_position - surface_point );
     vec3 surface_normal = get_normal(surface_point);
     float diffuse_lighting = dot( surface_normal, light_vector );
@@ -109,9 +111,7 @@ void main()
     float scene_distance    = ray_march( ray_origin, ray_direction );
     vec3 surface_point      = ray_origin + ray_direction * scene_distance;
 
-    vec3 light_position = vec3(0, 5, 6);
-    light_position.xz += vec2(sin(u_time_total_elapsed_s), cos(u_time_total_elapsed_s)) * 3;
-    float diffuse_lighting = get_diffuse_lighting( surface_point, light_position );
+    float diffuse_lighting = get_diffuse_lighting( surface_point );
 
     vec3 color = vec3( diffuse_lighting );
 
