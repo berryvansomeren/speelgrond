@@ -10,10 +10,9 @@ Game = game.Game
 
 _GAME : Optional[ Game ] = None
 
-def vvs_init( game_window : sg.GameWindow ):
+def vvs_init( game_window : sg.GameWindow ) -> None:
     global _GAME
     _GAME = Game( game_window )
 
-def vvs_update( dt ):
+def vvs_update( dt ) -> None:
     _GAME.update( dt )
-

@@ -11,11 +11,11 @@ class Game:
         self.sphere_position = ( 0., 1., 6. )
         self.total_time = 0.
 
-    def update( self, dt ) :
+    def update( self, dt ) -> None:
         self._update_sphere_position( dt )
         self._update_light_position( dt )
 
-    def _update_sphere_position( self, dt ):
+    def _update_sphere_position( self, dt ) -> None:
         velocity = dt * 5
         modifiers = [
             ( key.LEFT, ( -velocity, 0, 0 ) ),
@@ -29,7 +29,7 @@ class Game:
 
         self.game_window.set_uniform( 'u_sphere_position', self.sphere_position )
 
-    def _update_light_position( self, dt ):
+    def _update_light_position( self, dt ) -> None:
         self.total_time += dt
         light_position = ( 0, 5, 6 )
         light_position_delta = np.array(( math.sin( self.total_time ), 0, math.cos( self.total_time ) )) * 3

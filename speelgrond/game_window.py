@@ -23,7 +23,7 @@ class GameWindow( ververser.GameWindow ):
         def _load_screen_shader( path : Path ) -> Any:
             return load_screen_shader( path, self.width, self.height )
 
-        self.asset_manager.register_asset_loader( '.frag', _load_screen_shader )
+        self.content_manager.register_asset_loader( '.frag', _load_screen_shader )
         self.time_start = time()
 
     # --------
@@ -44,15 +44,15 @@ class GameWindow( ververser.GameWindow ):
     # --------
     # Main Game Functions
 
-    def init( self ) -> bool:
-        self.screen_shader = self.asset_manager.load( EXPECTED_SHADER_NAME )
+    def init( self ) -> None:
+        self.screen_shader = self.content_manager.load( EXPECTED_SHADER_NAME )
         assert self.screen_shader
 
         # super init comes last,
         # as code invoked by the main script's init() might already expect the screen shader to be available
         super().init()
 
-    def update( self, dt ) :
+    def update( self, dt ) -> None:
         if self.screen_shader.reload_status == LoadStatus.RELOADED:
             self.time_start = time()
 
@@ -64,5 +64,5 @@ class GameWindow( ververser.GameWindow ):
 
         super().update( dt )
 
-    def draw( self ) :
-        self.screen_shader.get().draw()
+    def draw( self ) -> None:
+        self.screen_shader.draw()
