@@ -17,7 +17,7 @@ Speelgrond is a lighweight wrapper of [ververser](https://github.com/berryvansom
 
 The following is a screenshot of _speelgrond/examples/1_sphere_, 
 which runs an incredibly simple ray marching shader that uses SDFs to define a sphere, a plane, and shadows. 
-The sphere's position can be controlled using the keyboard, and the light position is updated by python code. 
+The sphere's position can be controlled using the keyboard, and the light position is updated by python code too. 
 
 <p align="center">
   <img src="speelgrond/examples/1_sphere/screenshot.png" width="500">
