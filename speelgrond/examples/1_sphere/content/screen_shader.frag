@@ -7,9 +7,6 @@ uniform float u_time_total_elapsed_s;
 uniform vec3 u_sphere_position;
 uniform vec3 u_light_position;
 
-// ro = ray_origin = camera_position
-// rd = ray_direction
-
 int MAX_STEPS = 1000;
 float MIN_DISTANCE = 0.001;
 float MAX_DISTANCE = 10000;

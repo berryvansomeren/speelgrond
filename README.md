@@ -11,7 +11,20 @@ instead of needing to pass input events through OpenGL buffer objects, as is don
 
 Speelgrond is a lighweight wrapper of [ververser](https://github.com/berryvansomeren/ververser). 
 
----
+# Gallery
+
+## Example 1: Sphere
+
+The following is a screenshot of _speelgrond/examples/1_sphere_, 
+which runs an incredibly simple ray marching shader that uses SDFs to define a sphere, a plane, and shadows. 
+The sphere's position can be controlled using the keyboard, and the light position is updated by python code. 
+
+<p align="center">
+  <img src="speelgrond/examples/1_sphere/screenshot.png" width="500">
+</p>
+
+## Example 2: Rainforest by Inigo Quilez
+
 The following is a screenshot of _speelgrond/examples/2_iq_rainforest_, 
 which runs the [rainforest shader by the brilliant Inigo Quilez](https://www.youtube.com/watch?v=BFld4EBO2RE), 
 who also made shadertoy. 
