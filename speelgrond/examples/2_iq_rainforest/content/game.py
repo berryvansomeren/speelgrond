@@ -10,8 +10,11 @@ class Game:
 
     def update( self, dt ) -> None:
         velocity = dt * 100
-        if self.game_window.keyboard.is_down( key.UP ):
-            self.camera_time_along_path += velocity
-        if self.game_window.keyboard.is_down( key.DOWN ):
-            self.camera_time_along_path -= velocity
+        modifiers = [
+            ( key.UP, velocity ),
+            ( key.DOWN, -velocity ),
+        ]
+        for keyboard_key, key_velocity in modifiers:
+            if self.game_window.keyboard.is_down( keyboard_key ) :
+                self.camera_time_along_path += key_velocity
         self.game_window.set_uniform( 'u_camera_time_along_path', self.camera_time_along_path )
