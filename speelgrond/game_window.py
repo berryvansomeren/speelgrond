@@ -53,11 +53,13 @@ class GameWindow( ververser.GameWindow ):
         super().init()
 
     def update( self, dt ) -> None:
-        if self.screen_shader.reload_status == LoadStatus.RELOADED:
-            self.time_start = time()
+        # if self.screen_shader.reload_status == LoadStatus.RELOADED:
+        #     self.time_start = time()
 
         self.set_uniform( 'u_resolution', (self.width, self.height) )
-        self.set_uniform( 'u_time_total_elapsed_s', time() - self.time_start )
+        now = time()
+        time_total_elapsed_s = now - self.time_start
+        self.set_uniform( 'u_time_total_elapsed_s', time_total_elapsed_s )
         self.set_uniform( 'u_time_delta_s', dt )
         self.set_uniform( 'u_frames_total', self.fps_counter.total_frames )
         self.set_uniform( 'u_frames_per_second', self.fps_counter.fps )

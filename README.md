@@ -10,3 +10,14 @@ It also makes it easier to integrate input devices, now that the logic processin
 instead of needing to pass input events through OpenGL buffer objects, as is done in shadertoy. 
 
 Speelgrond is a lighweight wrapper of [ververser](https://github.com/berryvansomeren/ververser). 
+
+---
+The following is a screenshot of _speelgrond/examples/2_iq_rainforest_, 
+which runs the [rainforest shader by the brilliant Inigo Quilez](https://www.youtube.com/watch?v=BFld4EBO2RE), 
+who also made shadertoy. 
+A minor change was made to the shader so that the camera can now be moved over a predefined path,
+by using the up and down keyboard keys. 
+
+<p align="center">
+  <img src="speelgrond/examples/2_iq_rainforest/screenshot.png" width="500">
+</p>

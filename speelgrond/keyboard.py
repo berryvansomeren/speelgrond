@@ -1,5 +1,4 @@
 from copy import deepcopy
-import pyglet.window.key as key
 from pyglet.window.key import KeyStateHandler
 
 
