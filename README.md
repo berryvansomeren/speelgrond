@@ -13,6 +13,8 @@ Speelgrond is a lighweight wrapper of [ververser](https://github.com/berryvansom
 
 # Gallery
 
+Note that the purpose of these examples is not just to produce pretty images with shaders, but to illustrate how easy it is to combine shaders with game logic in Python. 
+
 ## Example 1: Sphere
 
 The following is a screenshot of _speelgrond/examples/1_sphere_, 
