@@ -2,7 +2,7 @@ from copy import deepcopy
 from pyglet.window.key import KeyStateHandler
 
 
-class _Keyboard:
+class Keyboard:
 
     def __init__( self ):
         self._previous_key_states = KeyStateHandler()

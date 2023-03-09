@@ -24,13 +24,14 @@ python-versions = "*"
 
 [[package]]
 name = "ververser"
-version = "0.1.15"
+version = "0.1.20"
 description = "A lightweight wrapper around pyglet that allows hot-reloading of content."
 category = "main"
 optional = false
 python-versions = ">=3.10,<4.0"
 
 [package.dependencies]
+numpy = ">=1.24.2,<2.0.0"
 pyglet = ">=2.0.5,<3.0.0"
 
 [metadata]
@@ -144,6 +145,6 @@ pyglet = [
     {file = "pyglet-2.0.5.zip", hash = "sha256:c47ff4eded95104d030e0697eedd6082b61dc987460bbca83ec47b6e7cbfd38a"},
 ]
 ververser = [
-    {file = "ververser-0.1.15-py3-none-any.whl", hash = "sha256:4f89d1c090a0ee68c5b20201e1fcf17d546108d29af8fda3fcbdcb399cd3c225"},
-    {file = "ververser-0.1.15.tar.gz", hash = "sha256:94af79fb42e5770eaeceaf55fe02fc79d2a1e3acf6185b8613306f1ac1da30dc"},
+    {file = "ververser-0.1.20-py3-none-any.whl", hash = "sha256:9ff713d9bdfc6264c9ef4aa7b418f366858acdb8e1bb5de187fcbb3a68ef81ec"},
+    {file = "ververser-0.1.20.tar.gz", hash = "sha256:9fb37b5cd666254135b4e4bfcf0799094f606f61a1cf536282b92ca025e9974d"},
 ]

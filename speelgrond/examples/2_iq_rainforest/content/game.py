@@ -1,6 +1,8 @@
 import pyglet.window.key as key
 import speelgrond as sg
 
+from ververser.reloading_asset import LoadStatus
+
 
 class Game:
 
@@ -9,6 +11,9 @@ class Game:
         self.camera_time_along_path = 0
 
     def update( self, dt ) -> None:
+        if self.game_window.screen_shader.reload_status == LoadStatus.RELOADED:
+            self.camera_time_along_path = 0
+
         velocity = dt * 100
         modifiers = [
             ( key.UP, velocity ),
