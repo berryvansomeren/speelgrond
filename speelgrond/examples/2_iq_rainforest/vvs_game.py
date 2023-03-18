@@ -1,17 +1,23 @@
+import logging
 import pyglet.window.key as key
 import speelgrond as sg
+from ververser import ReloadStatus
+from speelgrond import host_this_folder
 
-from ververser.reloading_asset import LoadStatus
+
+if __name__ == '__main__':
+    logging.basicConfig( level = logging.INFO )
+    host_this_folder()
 
 
-class Game:
+class VVSGame:
 
     def __init__( self, game_window: sg.GameWindow ):
         self.game_window = game_window
         self.camera_time_along_path = 0
 
-    def update( self, dt ) -> None:
-        if self.game_window.screen_shader.reload_status == LoadStatus.RELOADED:
+    def vvs_update( self, dt ) -> None:
+        if self.game_window.screen_shader.reload_status == ReloadStatus.RELOADED:
             self.camera_time_along_path = 0
 
         velocity = dt * 100

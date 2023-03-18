@@ -2,11 +2,8 @@ from pathlib import Path
 from time import time
 from typing import Any
 
-import ververser
-from ververser import LoadStatus
-
-from speelgrond.keyboard import Keyboard
 from speelgrond.screen_shader.screen_shader import load_screen_shader
+import ververser
 
 
 EXPECTED_SHADER_NAME = 'screen_shader.frag'
@@ -14,11 +11,8 @@ EXPECTED_SHADER_NAME = 'screen_shader.frag'
 
 class GameWindow( ververser.GameWindow ):
 
-    def __init__( self, content_folder : Path ):
-        super().__init__( content_folder )
-
-        self.keyboard = Keyboard()
-        self.push_handlers( self.keyboard.get_handler() )
+    def __init__( self, content_folder_path : Path, *args, **kwargs ):
+        super().__init__( content_folder_path = content_folder_path, *args, **kwargs )
 
         def _load_screen_shader( path : Path ) -> Any:
             return load_screen_shader( path, self.width, self.height )

@@ -1,17 +1,24 @@
+import logging
 import math
 import numpy as np
 import pyglet.window.key as key
 import speelgrond as sg
+from speelgrond import host_this_folder
 
 
-class Game:
+if __name__ == '__main__':
+    logging.basicConfig( level = logging.INFO )
+    host_this_folder()
+
+
+class VVSGame:
 
     def __init__( self, game_window: sg.GameWindow ):
         self.game_window = game_window
         self.sphere_position = ( 0., 1., 6. )
         self.total_time = 0.
 
-    def update( self, dt ) -> None:
+    def vvs_update( self, dt ) -> None:
         self._update_sphere_position( dt )
         self._update_light_position( dt )
 
