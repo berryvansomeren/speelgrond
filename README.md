@@ -39,12 +39,10 @@ by using the up and down keyboard keys.
 
 ## Example 3: A Prcedurally Animated Character
 
-The following is a video of _speelgrond/examples/3_character_,
+The following is a screenshot of _speelgrond/examples/3_character_,
 which implements a procedurally animated character. 
-The code is ported from [this tutorial by Sokpop Collective](https://www.youtube.com/watch?v=2LbKuQsODHg), where do create a similar character in Game Maker.
+The code is ported from [this tutorial by Sokpop Collective](https://www.youtube.com/watch?v=2LbKuQsODHg), where they create a similar character in Game Maker.
 
 <p align="center">
-    <video width="320" height="240" controls>
-      <source src="speelgrond/examples/3_character/video.mp4" type="video/mp4">
-    </video>
+  <img src="speelgrond/examples/3_character/screenshot.png" width="500">
 </p>
