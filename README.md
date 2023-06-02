@@ -43,4 +43,8 @@ The following is a video of _speelgrond/examples/3_character_,
 which implements a procedurally animated character. 
 The code is ported from [this tutorial by Sokpop Collective](https://www.youtube.com/watch?v=2LbKuQsODHg), where do create a similar character in Game Maker.
 
-![](doc/speelgrond.mp4)
+<p align="center">
+    <video width="320" height="240" controls>
+      <source src="speelgrond/examples/3_character/video.mp4" type="video/mp4">
+    </video>
+</p>
