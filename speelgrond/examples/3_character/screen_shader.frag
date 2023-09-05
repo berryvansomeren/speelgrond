@@ -8,6 +8,16 @@ const vec3 DEBUG_COLOR = vec3( 1., 0., 1. );
 // ----------------------------------------------------------------
 // Materials
 
+const vec3 WHITE = vec3( 0.5, 0.5, 0.5 );
+const vec3 RED = vec3( 1., 0.5, 0.5 );
+
+const vec3 SUN_COLOR = vec3( 212./255., 66./255., 6./255. ); // WHITE;
+const vec3 SKY_COLOR = vec3( 47./255., 216./255., 254./255. ); // vec3( 3./255., 116./255., 156./255. );
+const vec3 BOUNCE_LIGHT_COLOR = vec3( 92./255., 212./255., 239./255. ); // RED;
+
+const vec3 TERRAIN_COLOR = vec3( 3./255., 116./255., 156./255. ); // vec3( 135./255., 112./255., 216./255. );
+const vec3 CHARACTER_COLOR = vec3( 245./255., 110/255., 2./255. ); // vec3( 171./255., 217./255., 7./255. );
+
 const int MATERIAL_NONE = 0;
 const int MATERIAL_TERRAIN = 1;
 const int MATERIAL_CHARACTER = 2;
@@ -22,11 +32,11 @@ Material get_material_by_id( int material_id )
 {
     if ( material_id == MATERIAL_TERRAIN )
     {
-        return Material( vec3( 3./255., 116./255., 156./255. ) );
+        return Material( TERRAIN_COLOR );
     }
     else if( material_id == MATERIAL_CHARACTER )
     {
-        return Material( vec3( 245./255., 110/255., 2./255. ) );
+        return Material( CHARACTER_COLOR );
     }
     else
     {
@@ -85,7 +95,7 @@ uniform vec3 u_light_position;
 
 int MAX_STEPS = 1000;
 float MIN_DISTANCE = 0.001;
-float MAX_DISTANCE = 10000;
+float MAX_DISTANCE = 10000; // 10;
 float SHADOW_POINT_OFFSET = 0.002;
 
 // ----------------------------------------------------------------
@@ -206,7 +216,6 @@ vec3 get_normal( vec3 surface_point )
 vec3 get_sun_lighting( vec3 surface_point, vec3 surface_normal )
 {
     float sun_lighting_power = 1.8;
-    vec3 sun_color = vec3( 212./255., 66./255., 6./255. );
     vec3 sun_position = u_light_position;
     vec3 sun_vector = normalize( sun_position - surface_point );
     float diffuse_coefficient = dot( surface_normal, sun_vector );
@@ -227,25 +236,23 @@ vec3 get_sun_lighting( vec3 surface_point, vec3 surface_normal )
         diffuse_coefficient *= 0.1;
     }
 
-    vec3 sun_lighting = sun_lighting_power * sun_color * diffuse_coefficient;
+    vec3 sun_lighting = sun_lighting_power * SUN_COLOR * diffuse_coefficient;
     return sun_lighting;
 }
 
 vec3 get_sky_lighting( vec3 surface_normal )
 {
     float sky_lighting_power = 0.8;
-    vec3 sky_color = vec3( 128./255., 128./255., 128./255. );
     float diffuse_coefficient = 0.5 + 0.5 * surface_normal.y;
-    vec3 sky_lighting = sky_lighting_power * sky_color * diffuse_coefficient;
+    vec3 sky_lighting = sky_lighting_power * SKY_COLOR * diffuse_coefficient;
     return sky_lighting;
 }
 
 vec3 get_bounce_lighting( vec3 surface_normal )
 {
     float bounce_lighting_power = 0.4;
-    vec3 bounce_light_color = vec3( 92./255., 212./255., 239./255. );
     float diffuse_coefficient = clamp( 0.5 - 0.5 * surface_normal.y, 0.0, 1.0 );
-    vec3 bounce_lighting = bounce_lighting_power * bounce_light_color * diffuse_coefficient;
+    vec3 bounce_lighting = bounce_lighting_power * BOUNCE_LIGHT_COLOR * diffuse_coefficient;
     return bounce_lighting;
 }
 

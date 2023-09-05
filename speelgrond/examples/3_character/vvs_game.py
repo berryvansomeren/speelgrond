@@ -5,14 +5,17 @@ import numpy as np
 import speelgrond as sg
 from speelgrond import host_this_folder
 
-
-from character import Character
+from ververser import import_script
 from character_uniform_values import get_character_uniform_values
 
 
 if __name__ == '__main__':
     logging.basicConfig( level = logging.INFO )
     host_this_folder()
+
+
+module_character = import_script( 'character.py' )
+
 
 class VVSGame:
 
@@ -21,7 +24,7 @@ class VVSGame:
         self.sphere_position = ( 0., 1., 6. )
         self.total_time = 0.
 
-        self.character = Character( game_window )
+        self.character = module_character.Character( game_window )
 
     def vvs_update( self, dt : float ) -> None:
         self._update_light_position( dt )

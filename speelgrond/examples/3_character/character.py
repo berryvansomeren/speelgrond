@@ -7,6 +7,10 @@ import math_helpers as mh
 WALKING_VELOCITY = 2
 STEP_TIME = 0.2
 
+FEET_WIDTH = 0.2 # 0.8
+BODY_BOB_FACTOR = 0.25 # 0.5
+HAND_BOB_FACTOR = 0.25 # 1.25
+
 
 class Foot:
     def __init__( self, position : pm.Vec3 ):
@@ -30,13 +34,12 @@ class Character:
         self._update_direction( pm.Vec3( 0, 0, -1 ) )
 
         self.feet = []
-        feet_width = 0.2
         for foot_index in range( 2 ):
             side = foot_index * 2 - 1
             foot_position = pm.Vec3(
-                self.position.x + self.direction_right.x * feet_width * side + self.direction_forward.x * 0.1,
+                self.position.x + self.direction_right.x * FEET_WIDTH * side + self.direction_forward.x * 0.1,
                 0,
-                self.position.z + self.direction_right.z * feet_width * side + self.direction_forward.z * 0.1
+                self.position.z + self.direction_right.z * FEET_WIDTH * side + self.direction_forward.z * 0.1
             )
             self.feet.append( Foot( foot_position ) )
 
@@ -95,18 +98,16 @@ class Character:
         foot = self.feet[ step_foot_index ]
         foot.previous_position = foot.position
         side = step_foot_index * 2 - 1
-        feet_width = 0.2
         foot.target_position = pm.Vec3(
-            self.position.x + self.direction_right.x * feet_width * side + self.direction_forward.x * 0.1,
+            self.position.x + self.direction_right.x * FEET_WIDTH * side + self.direction_forward.x * 0.1,
             0,
-            self.position.z + self.direction_right.z * feet_width * side + self.direction_forward.z * 0.1
+            self.position.z + self.direction_right.z * FEET_WIDTH * side + self.direction_forward.z * 0.1
         )
         foot.t = 0
 
     def _handle_body_bob( self ) -> None:
         max_foot_height = max( foot.position.y for foot in self.feet )
-        body_bob_dampening_factor = 0.25
-        self.position.y = self.body_base_height + max_foot_height * body_bob_dampening_factor
+        self.position.y = self.body_base_height + max_foot_height * BODY_BOB_FACTOR
 
     def _handle_arms( self ) -> None:
         for arm_index in range( len( self.arms_positions ) ):
@@ -117,8 +118,7 @@ class Character:
                     pm.Vec3( 0, -0.1, 0 )
             )
             max_foot_height = max( foot.position.y for foot in self.feet )
-            hand_bob_dampening_factor = 0.25
-            self.arms_positions[ arm_index ].y += max_foot_height * hand_bob_dampening_factor
+            self.arms_positions[ arm_index ].y += max_foot_height * HAND_BOB_FACTOR
 
     def _set_feet_positions( self, dt : float ) -> None:
         for foot in self.feet:
