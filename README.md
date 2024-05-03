@@ -1,7 +1,10 @@
 # Speelgrond
 
-**Speelgrond is a screen shader playground with python scripting and hot-reloading** 
 
+
+**Also see my blogpost [HERE](https://www.berryvansomeren.com/posts/speelgrond)!** :sparkles:
+
+**Speelgrond is a screen shader playground with python scripting and hot-reloading**  
 Think **[shadertoy](https://www.shadertoy.com/)**  but with python scripting for game logic.  
 
 This allows you to easily implement much more complex update logic for shader toys, 
